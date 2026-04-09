@@ -2,11 +2,18 @@ package org.example;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class Main {
     static int player_win = 0;
     static int computer_win = 0;
 
-    public static void main(String[] args) {
+    //for extra task
+    // ANSI Escape Codes to add colors to the console text for better UI/UX
+    public static final String BLUE = "\u001B[34m"; // Color for Player X
+    public static final String RED = "\u001B[31m";  // Color for Computer O
+    public static final String RESET = "\u001B[0m"; // Resets color back to default
+
+     static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
         System.out.println("\n** Welcome to the Tic Tac Toe Game **");
@@ -48,6 +55,17 @@ public class Main {
             System.out.println("The overall result is a TIE!");
     }
 
+
+    public static void displayBoard(char[][] board) {
+        System.out.println("    0   1   2");
+        for (int i = 0; i < 3; i++) {
+            System.out.print(i + " | ");
+            for (int j = 0; j < 3; j++) {
+                // Colorize symbols: Blue for 'X' (Player) and Red for 'O' (Computer)
+                // The RESET code is used after each symbol to prevent color bleeding to the rest of the board
+                String symbol = (board[i][j] == 'X') ? BLUE + "X" + RESET :
+                        (board[i][j] == 'O') ? RED + "O" + RESET : " ";
+                System.out.print(symbol + (j < 2 ? " | " : ""));
     // Feature: Numbered Grid added for better UI
     public static void displayBoard(char[][] board) {
         System.out.println("    0   1   2"); 
@@ -64,6 +82,9 @@ public class Main {
     public static void playerTurn(char[][] board, Scanner input) {
         int row, col;
         while (true) {
+            System.out.print("\nُEnter your Row Between(0-2): ");
+            row = input.nextInt();
+            System.out.print("ُEnter your Column Between(0-2): ");
             System.out.print("\nEnter your Row Between(0-2): ");
             row = input.nextInt();
             System.out.print("Enter your Column Between(0-2): ");
@@ -86,6 +107,7 @@ public class Main {
             col = rand.nextInt(3);
             if (board[row][col] == ' ') {
                 board[row][col] = 'O';
+                System.out.println("Computer chose: "+"Row " + row + " Column " + col);
                 System.out.println("Computer chose: Row " + row + " Column " + col);
                 break;
             }
@@ -126,4 +148,14 @@ public class Main {
                 (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol);
     }
 }
+
+
+
+
+
+
+
+
+
+
 
