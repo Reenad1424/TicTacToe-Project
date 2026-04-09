@@ -19,6 +19,7 @@ public class Main {
         System.out.println("\n** Welcome to the Tic Tac Toe Game **");
 
         for (int round = 1; round <= 3; round++) {
+            // Feature: Scoreboard added at the start of each round
             System.out.println("\n============================");
             System.out.println(" SCORE: YOU [" + player_win + "] | COMPUTER [" + computer_win + "]");
             System.out.println("============================");
@@ -65,6 +66,13 @@ public class Main {
                 String symbol = (board[i][j] == 'X') ? BLUE + "X" + RESET :
                         (board[i][j] == 'O') ? RED + "O" + RESET : " ";
                 System.out.print(symbol + (j < 2 ? " | " : ""));
+    // Feature: Numbered Grid added for better UI
+    public static void displayBoard(char[][] board) {
+        System.out.println("    0   1   2"); 
+        for (int i = 0; i < 3; i++) {
+            System.out.print(i + " | "); 
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + (j < 2 ? " | " : ""));
             }
             System.out.println(" |");
             if (i < 2) System.out.println("  -------------");
@@ -77,6 +85,9 @@ public class Main {
             System.out.print("\nُEnter your Row Between(0-2): ");
             row = input.nextInt();
             System.out.print("ُEnter your Column Between(0-2): ");
+            System.out.print("\nEnter your Row Between(0-2): ");
+            row = input.nextInt();
+            System.out.print("Enter your Column Between(0-2): ");
             col = input.nextInt();
 
             if (row >= 0 && row < 3 && col >= 0 && col < 3 && board[row][col] == ' ') {
@@ -97,6 +108,7 @@ public class Main {
             if (board[row][col] == ' ') {
                 board[row][col] = 'O';
                 System.out.println("Computer chose: "+"Row " + row + " Column " + col);
+                System.out.println("Computer chose: Row " + row + " Column " + col);
                 break;
             }
         }
