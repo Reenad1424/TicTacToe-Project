@@ -58,24 +58,31 @@ public class Main {
 
     public static void displayBoard(char[][] board) {
         System.out.println("    0   1   2");
+
         for (int i = 0; i < 3; i++) {
             System.out.print(i + " | ");
+
             for (int j = 0; j < 3; j++) {
+                String symbol;
+
                 // Colorize symbols: Blue for 'X' (Player) and Red for 'O' (Computer)
                 // The RESET code is used after each symbol to prevent color bleeding to the rest of the board
-                String symbol = (board[i][j] == 'X') ? BLUE + "X" + RESET :
-                        (board[i][j] == 'O') ? RED + "O" + RESET : " ";
+                if (board[i][j] == 'X') {
+                    symbol = BLUE + "X" + RESET;
+                } else if (board[i][j] == 'O') {
+                    symbol = RED + "O" + RESET;
+                } else {
+                    symbol = " ";
+                }
+
                 System.out.print(symbol + (j < 2 ? " | " : ""));
-    // Feature: Numbered Grid added for better UI
-    public static void displayBoard(char[][] board) {
-        System.out.println("    0   1   2"); 
-        for (int i = 0; i < 3; i++) {
-            System.out.print(i + " | "); 
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + (j < 2 ? " | " : ""));
             }
+
             System.out.println(" |");
-            if (i < 2) System.out.println("  -------------");
+
+            if (i < 2) {
+                System.out.println("  -------------");
+            }
         }
     }
 
